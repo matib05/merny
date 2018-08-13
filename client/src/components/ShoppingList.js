@@ -19,26 +19,14 @@ class ShoppingList extends React.Component {
         const { items } = this.props.item;
         return(
             <Container>
-                <Button 
-                    color="dark"
-                    style={{marginBottom: '2rem'}}
-                    onClick={() => {
-                        const name = prompt('Enter Item: ');
-                        if (name) {
-                            this.setState(state => ({
-                                items: [...state.items, {id: uuid, name: name}]
-                            }))
-                        }
-                    }}
-                >Add Item </Button>
-                <ListGroup>
-                    {items.map(({ id, name }) => (
+                <ListGroup style={{ marginBottom: '2rem' }}>
+                    {items.map(({ _id, name }) => (
                         <ListGroupItem>
                             <Button
                                 className="remove-btn"
                                 color="danger"
                                 size="sm"
-                                onClick={this.deleteItem.bind(this, id)}
+                                onClick={this.deleteItem.bind(this, _id)}
                             >
                                 &times;
                             </Button>

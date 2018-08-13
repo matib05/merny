@@ -40,7 +40,6 @@ import {
     onSubmit = (e) => {
         e.preventDefault();
         let shoppingItem = {
-            id: 5,
             name: this.state.name
         }
         this.props.addItem(shoppingItem);

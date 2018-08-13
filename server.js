@@ -1,14 +1,39 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const items = require('./routes/api/items')
+const cors = require('cors');
+const Item = require('./models/Item');
+//const items = require('./routes/api/items')
 
 const app = express();
 app.use(bodyParser.json());
-const router = express.Router();
-app.use(router);
+app.use(cors());
+//const router = express.Router();
+//app.use(router);
 
-app.use('/routes/api', items);
+//app.use('/api/items', items);
+
+
+app.get('/api/items/', (req, res) => {
+    Item.find()
+      .then(items => res.json(items));
+  });
+
+app.post('/api/items/', (req, res) => {
+    const newItem = new Item({
+        name: req.body.name
+    });
+
+    newItem.save().then(item => res.json(item));
+})
+
+app.delete('/api/items/:id', (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({success: true})))
+        .catch(err => res.json({success: false}, console.log(err))
+    );
+})
+
 
 mongoose
     .connect("mongodb://matib05:armpit1117@ds263161.mlab.com:63161/mern-stack", { useNewUrlParser: true })
