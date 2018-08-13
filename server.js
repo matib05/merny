@@ -36,7 +36,7 @@ app.delete('/api/items/:id', (req, res) => {
 
 
 mongoose
-    .connect("mongodb://matib05:armpit1117@ds263161.mlab.com:63161/mern-stack", { useNewUrlParser: true })
+    .connect("mongodb://matib05:blah@ds263161.mlab.com:63161/mern-stack", { useNewUrlParser: true })
     .then(() => console.log('connected to mongodb server'))
     .catch((err) => console.log(err, `mongoUri: ${db}`));
 
