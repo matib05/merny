@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const Item = require('./models/Item');
+const db = require('./config/keys').MONGO_URI
 //const items = require('./routes/api/items')
 
 const app = express();
@@ -36,7 +37,7 @@ app.delete('/api/items/:id', (req, res) => {
 
 
 mongoose
-    .connect("mongodb://matib05:blah@ds263161.mlab.com:63161/mern-stack", { useNewUrlParser: true })
+    .connect(db, { useNewUrlParser: true })
     .then(() => console.log('connected to mongodb server'))
     .catch((err) => console.log(err, `mongoUri: ${db}`));
 
